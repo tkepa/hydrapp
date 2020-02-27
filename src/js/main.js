@@ -17,6 +17,34 @@ if ('serviceWorker' in navigator) {
 // place your code below
 
 
-console.log(`Hello world!`);
+const glasses = document.querySelector(".count--js");
+const added = document.querySelector(".button--js");
+const del = document.querySelector(".button__delete--js");
+const day = new Date().toISOString().slice(0, 10);
+let addedGlass = 0;
+
+added.addEventListener('click', (e) => {
+  if (addedGlass === 100) {
+    alert('Osiągnales limit szklanek');
+  }
+  else {
+    addedGlass += 1;
+    glasses.innerHTML = `${addedGlass}`;
+    localStorage.setItem(day, addedGlass);
+  }
 
 
+});
+
+del.addEventListener('click', (e) => {
+  if (addedGlass >>> 0) {
+    addedGlass -= 1;
+    glasses.innerHTML = `${addedGlass}`;
+    localStorage.setItem(day, addedGlass);
+  }
+  else {
+    alert("nie mozna odjąc szklanki");
+  }
+
+
+})
